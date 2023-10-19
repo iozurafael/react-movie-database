@@ -1,13 +1,308 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary-color: #243b4a;
+  --secondary-color: #87bcde;
+  --accent-color: #805e73;
+  --text-color: white;
+  --main-color: #4e4d5c;
+  --navbar-height: 6rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  border: none;
+  margin: 0;
 }
+
+.safePage {
+  padding-top: var(--navbar-height);
+}
+
+menu:not(article menu),
+ol:not(article ol),
+ul:not(article ul) {
+  list-style: none;
+}
+
+menu,
+ol,
+ul {
+  padding-left: 0;
+}
+
+a,
+u {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+p {
+  color: var(--text-color);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html {
+  font-size: 62.5%; /* (62.5/100) * 16px = 10px */
+  -webkit-text-size-adjust: none; /* for iOS Safari */
+  text-size-adjust: none; /* for other mobile browsers */
+  background-color: var(--main-color);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+label,
+button,
+select,
+summary,
+[type='radio'],
+[type='submit'],
+[type='checkbox'] {
+  cursor: pointer;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.6rem;
+  padding: 2rem;
+}
+
+.movies-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  height: 35rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.movies-item:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.heartIcon {
+  display: flex;
+  font-size: 2.5rem;
+  color: var(--text-color);
+  z-index: 999;
+}
+
+.movies-item-title {
+  position: absolute;
+  font-size: 3rem;
+  color: var(--text-color);
+  visibility: hidden;
+  bottom: 0;
+  margin: 0;
+  padding: 1rem 0.5rem;
+}
+
+.movies-item:hover .movies-item-heart {
+  visibility: visible;
+}
+
+.movies-item:hover .movies-item-title {
+  visibility: visible;
+}
+
+.loading-header {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 25rem;
+  padding: 0.8rem;
+  background-color: #e0e0e0;
+  animation: loadingAnimation 1s infinite alternate;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+/* NAVBAR */
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  padding: 1.6rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-height: var(--navbar-height);
+  z-index: 30;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar-link {
+  font-size: 1.6rem;
+  padding-left: 1rem;
+  font-weight: 800;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* NAVBAR */
+
+/* SEARCH COMPONENT */
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1.6rem;
+  color: #333;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.clear-button {
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.search-input:not(:placeholder-shown) + .clear-button {
+  opacity: 1;
+}
+
+/* SEARCH COMPONENT */
+
+.button-styling {
+  padding: 1rem 3rem;
+  border-radius: 5rem;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.no-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  gap: 1rem;
+  font-weight: 800;
+  padding: 4rem 2rem;
+  color: var(--text-color);
+}
+
+.active-link {
+  color: var(--accent-color);
+}
+
+/* MOVIE DETAIL VIEW */
+
+.movie-detailview-background {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+}
+
+.movie-detailview-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the background color and transparency as needed */
+  z-index: 1; /* Place the overlay above other content */
+}
+
+.movie-detailview-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 70%;
+  gap: 2rem;
+  color: var(--text-color);
+  padding: 0 2rem;
+  text-align: justify;
+  z-index: 2;
+}
+
+.movie-detailview-title {
+  font-weight: 800;
+  font-size: 3rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.movie-detailview-overview {
+  font-size: 2.5rem;
+}
+
+/* MOVIE DETAIL VIEW */

@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  toasts: [],
-};
-
 const toastSlice = createSlice({
   name: 'toasts',
-  initialState,
+  initialState: {
+    toasts: [],
+  },
   reducers: {
     addToast: (state, action) => {
       const id = Date.now();

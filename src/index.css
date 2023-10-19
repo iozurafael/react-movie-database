@@ -105,7 +105,8 @@ summary,
   display: flex;
   font-size: 2.5rem;
   color: var(--text-color);
-  z-index: 999;
+  z-index: 50;
+  cursor: pointer;
 }
 
 .movies-item-title {
@@ -160,7 +161,7 @@ summary,
   top: 0;
   width: 100%;
   max-height: var(--navbar-height);
-  z-index: 30;
+  z-index: 100;
 }
 
 .navbar ul {

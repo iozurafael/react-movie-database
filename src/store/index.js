@@ -5,11 +5,18 @@ import {
   favoriteMoviesReducer,
   setFavoriteMovies,
 } from './slices/favoriteMoviesSlice';
+import {
+  toastsReducer,
+  addToast,
+  removeToast,
+  selectToasts,
+} from './slices/toastsSlice';
 
 export const store = configureStore({
   reducer: {
     favoriteMovies: favoriteMoviesReducer,
     [moviesApi.reducerPath]: moviesApi.reducer,
+    toasts: toastsReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(moviesApi.middleware);
@@ -23,4 +30,4 @@ export {
   useSearchMoviesQuery,
   useFetchMovieDetailsQuery,
 } from './apis/moviesApi';
-export { setFavoriteMovies };
+export { setFavoriteMovies, addToast, removeToast, selectToasts };

@@ -307,3 +307,30 @@ summary,
 }
 
 /* MOVIE DETAIL VIEW */
+
+/* TOAST */
+.toasts-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 999;
+  max-width: 75%;
+}
+
+.toast {
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.toast p {
+  color: black;
+  font-weight: 800;
+}
+/* TOAST */
